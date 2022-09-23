@@ -1,11 +1,14 @@
+const path = require('path');
 const express = require('express');
+
+const routes = require('./server/routes');
 
 const app = express();
 const port = 3000;
 
-app.get('*', (req, res) => {
-  res.send('Hello from NxReason');
-});
+app.use(express.static(path.join(__dirname, 'static')));
+
+app.use('/', routes);
 
 app.listen(port, () => {
   console.log(`server listening on port ${port}`);
