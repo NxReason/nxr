@@ -5,12 +5,23 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "start:dev": "nodemon ."
+    "server:dev": "nodemon .",
+    "client:build": "vite build",
+    "client:dev": "vite",
+    "client:preview": "vite preview"
   },
   "keywords": [],
   "author": "NxReason",
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.1.0",
+    "vite": "^3.1.0"
   }
 }
