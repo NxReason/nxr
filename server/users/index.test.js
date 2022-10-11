@@ -28,3 +28,16 @@ test('saves new user to db (with hashed pass) & reads it', async () => {
   expect(res.user.pass).not.toBe('verysecret');
   expect(res.user.role).toBe('user');
 });
+
+test('receives correct validation errors', async () => {
+  const res = await saveUser({
+    name: 'John Doe',
+    pass: 'secret',
+    role: 'invalid role',
+  });
+
+  expect(res.success).toBe(false);
+  expect(res.error.type).toBe('validation');
+  expect(res.error.msg).toBeInstanceOf(Array);
+  expect(res.error.msg.length).toBe(3);
+});

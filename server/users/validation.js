@@ -1,4 +1,4 @@
-const roles = require('./roles');
+const { roles } = require('./config');
 
 function validate({ name, pass, role }) {
   const fields = [validateName(name), validatePass(pass), validateRole(role)];
