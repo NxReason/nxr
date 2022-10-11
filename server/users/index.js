@@ -5,6 +5,35 @@ const validate = require('./validation');
 const { passSaltRounds } = require('./config');
 const { generateResponse, generateErrorResponse } = require('../api');
 
+async function getUsers() {
+  const users = await User.find({});
+  return generateResponse({ users });
+}
+
+async function getUser(id) {
+  try {
+    const user = await User.findById(id);
+
+    // user not found
+    if (!user) {
+      return generateErrorResponse(
+        {
+          type: 'not found',
+          msg: ['User not found'],
+        },
+        { user: null }
+      );
+    }
+
+    return generateResponse({ user });
+  } catch (err) {
+    return generateErrorResponse({
+      type: 'bad parameters',
+      msg: ['Invalid id'],
+    });
+  }
+}
+
 async function saveUser({ name = '', pass = '', role = 'user' }) {
   // validate fields
   const validation = validate({ name, pass, role });
@@ -30,5 +59,7 @@ async function saveUser({ name = '', pass = '', role = 'user' }) {
 }
 
 module.exports = {
+  getUsers,
+  getUser,
   saveUser,
 };
