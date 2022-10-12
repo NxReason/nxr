@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const cors = require('cors');
 
 const db = require('./db');
 const routes = require('./routes');
@@ -7,13 +8,17 @@ const populate = require('./utils/populate');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'static')));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use('/', routes);
-
 async function run(env) {
+  app.use(express.static(path.join(__dirname, 'static')));
+
+  if (env === 'development') {
+    app.use(cors());
+  }
+
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use('/', routes);
+
   const connString = db.getConnectionString(env);
   await db.connect(connString);
 

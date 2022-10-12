@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './LoginForm.css';
 
+import LoginAPI from '../api';
+
 function LoginForm() {
   const [name, setName] = useState('');
   const [pass, setPass] = useState('');
+  const [res, setRes] = useState({ all: 'bad' });
 
   function handleNameChange(e) {
     setName(e.target.value);
@@ -12,8 +15,10 @@ function LoginForm() {
     setPass(e.target.value);
   }
 
-  function handleClick(e) {
+  async function handleClick(e) {
     e.preventDefault();
+    const serverRes = await LoginAPI.send({ name, pass });
+    setRes(serverRes);
   }
 
   return (
@@ -40,6 +45,8 @@ function LoginForm() {
             onChange={handlePassChange}
           />
         </div>
+
+        <div>{res.all}</div>
 
         <button className="login-form-submit" onClick={handleClick}>
           Login

@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
+const login = require('./login');
 const users = require('./users');
 
 router.get('/', (req, res) => {
@@ -11,6 +12,7 @@ router.get('/about', (_, res) => {
 });
 
 // api
+router.use('/api/login', login);
 router.use('/api/users', users);
 
 module.exports = router;
