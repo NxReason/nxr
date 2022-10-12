@@ -5,6 +5,7 @@ const cors = require('cors');
 const db = require('./db');
 const routes = require('./routes');
 const populate = require('./utils/populate');
+const session = require('./utils/session');
 
 const app = express();
 
@@ -15,6 +16,7 @@ async function run(env) {
     app.use(cors());
   }
 
+  app.use(session);
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use('/', routes);

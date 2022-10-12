@@ -1,8 +1,15 @@
 const router = require('express').Router();
 
-router.post('/', (req, res) => {
-  console.log(req.body);
-  res.send({ all: 'good' });
+const auth = require('../auth');
+
+router.post('/', async (req, res) => {
+  const authResult = await auth(req.body);
+  if (authResult.success) {
+    req.session.user = authResult.user;
+    res.send({ all: 'good' });
+  } else {
+    res.send({ all: 'auth failed' });
+  }
 });
 
 module.exports = router;
