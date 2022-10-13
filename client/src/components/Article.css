@@ -1,0 +1,19 @@
+.article {
+  display: flex;
+  gap: 1em;
+  padding-bottom: 1.5em;
+  margin-bottom: 1.5em;
+  border-bottom: 1px solid #000;
+}
+.article:last-of-type {
+  margin-bottom: 0;
+}
+.article-img {
+  width: 350px;
+  height: 220px;
+}
+.article-title {
+  padding-bottom: 0.3em;
+  margin-bottom: 0.3em;
+  border-bottom: 2px solid var(--color-main-dark);
+}
