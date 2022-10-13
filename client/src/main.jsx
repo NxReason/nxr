@@ -5,7 +5,8 @@ import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 import './index.css';
 import Layout from './routes/Layout';
 import LoginForm from './routes/LoginForm';
-import ArticleList from './components/ArticleList';
+import ArticleList from './routes/ArticleList';
+import TaskList from './routes/TaskList';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: '/articles',
         element: <ArticleList />,
+      },
+      {
+        path: '/tasks',
+        element: <TaskList />,
       },
     ],
   },

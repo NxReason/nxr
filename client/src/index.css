@@ -17,6 +17,8 @@
   --color-text: #fafafa;
   --color-main: #a51919;
   --color-main-dark: #8d1414;
+
+  --padding-default: 1em;
 }
 
 * {

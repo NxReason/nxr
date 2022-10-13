@@ -1,0 +1,21 @@
+.header {
+  height: 60px;
+  background-color: var(--color-main);
+
+  padding: var(--padding-default);
+}
+.header-nav-links {
+  display: flex;
+  width: 100%;
+  gap: 1em;
+  text-transform: uppercase;
+  list-style: none;
+}
+.header-nav-links a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: text-shadow 0.2s linear;
+}
+.header-nav-links a:hover {
+  text-shadow: 2px 2px var(--color-bg);
+}
